@@ -1,0 +1,39 @@
+<header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+  <a href="/" class="d-flex align-items-center me-auto link-body-emphasis text-decoration-none">
+    <img class="me-2 logo-img" src="/logo.png" alt="Meadowlark Travel Logo" />
+
+    <span class="fs-4">Meadowlark Travel</span>
+  </a>
+
+  <ul class="nav nav-pills">
+    <li class="nav-item">
+      <a href="/"
+        class="nav-link <%= active === 'home' ? 'active' : '' %>"
+      >Home</a>
+    </li>
+
+    <li class="nav-item dropdown">
+      <a href ="#"
+        class="nav-link <%= active === 'newsletter' ? 'active' : '' %> dropdown-toggle"
+        data-bs-toggle="dropdown"
+      >News Letter</a>
+
+      <ul class="dropdown-menu">
+        <li><a  href="/newsletter-html" class="dropdown-item">HTML</a></li>
+        <li><a href="/newsletter-ajax" class="dropdown-item">AJAX</a></li>
+      </ul> 
+    </li>
+
+    <li class="nav-item dropdown">
+      <a href ="#"
+        class="nav-link <%= active === 'photo' ? 'active' : '' %> dropdown-toggle"
+        data-bs-toggle="dropdown"
+      >Photo</a>
+
+      <ul class="dropdown-menu">
+        <li><a  href="/photo-html" class="dropdown-item">HTML</a></li>
+        <li><a href="/photo-ajax" class="dropdown-item">AJAX</a></li>
+      </ul> 
+    </li>
+  </ul>
+</header>

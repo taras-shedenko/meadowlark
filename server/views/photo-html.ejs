@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('./partials/html-head.ejs') %>
+
+  <body>
+    <div class="container">
+      <%- include('./partials/header', {active: 'photo'}) %>
+
+      <h1 class="fs-2">Upload your photo!</h1>
+      <p class="fs-6 text-secondary">HTML submit</p>
+    
+      <form action="/photo-process" method="POST" enctype="multipart/form-data" class="col-sm-4">
+        <%- include('./partials/photo-form-content.ejs') %>
+      </form>
+    </div>
+
+    <%- include('./partials/body-scripts.ejs') %>
+  </body>
+</html>

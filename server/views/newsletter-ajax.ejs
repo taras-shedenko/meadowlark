@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('./partials/html-head.ejs') %>
+
+  <body>
+    <div class="container">
+      <%- include('./partials/header', {active: 'newsletter'}) %>
+
+      <h1 class="fs-2">Sign up for our  News Letter to receive news and specials!</h1>
+      <p class="fs-6 text-secondary">AJAX submit</p>
+
+      <form id="newsletter-form" class="col-sm-4">
+        <%- include('./partials/newsletter-form-content.ejs') %>
+      </form>
+    </div>
+
+      <%- include('./partials/body-scripts.ejs') %>
+
+      <script>
+        document.getElementById('newsletter-form').addEventListener('submit', e => {
+          e.preventDefault();
+          const form = e.target;
+          const userName = e.target['user-name'].value;
+          const userEmail = e.target['user-email'].value;
+          const requestBody = { userName, userEmail };
+
+          fetch(
+            '/api/newsletter-process',
+            {
+              method: "POST",
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(requestBody)
+            }
+          ).then(res => {
+            if (!res.ok) throw new Error('Request Error');
+            return res.json();
+          }).then(json => {
+            if (!json.success) throw new Error('Request Error');
+            location.assign(location.origin + '/newsletter-thankyou');
+          }).catch(e => console.log(`An Error occured: ${e.message}`));
+        })
+      </script>
+  </body>
+</html>

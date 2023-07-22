@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('./partials/html-head.ejs') %>
+
+  <body>
+    <div class="container">
+      <%- include('./partials/header', {active: 'newsletter'}) %>
+
+      <h1 class="fs-2">Sign up for our News Letter to receive news and specials!</h1>
+      <p class="fs-6 text-secondary">HTML submit</p>
+    
+      <form action="/newsletter-process" method="POST" class="col-sm-4">
+        <%- include('./partials/newsletter-form-content.ejs') %>
+      </form>
+    </div>
+
+    <%- include('./partials/body-scripts.ejs') %>
+  </body>
+</html>

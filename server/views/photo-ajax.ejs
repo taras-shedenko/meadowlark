@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('./partials/html-head.ejs') %>
+
+  <body>
+    <div class="container">
+      <%- include('./partials/header', {active: 'photo'}) %>
+
+      <h1 class="fs-2">Upload your photo!</h1>
+      <p class="fs-6 text-secondary">AJAX submit</p>
+    
+      <form id="photo-form" class="col-sm-4">
+        <%- include('./partials/photo-form-content.ejs') %>
+      </form>
+    </div>
+
+    <%- include('./partials/body-scripts.ejs') %>
+
+    <script>
+      document.getElementById('photo-form').addEventListener('submit', e => {
+        e.preventDefault();
+        const form = e.target;
+        const requestBody = new FormData(form);
+
+        fetch(
+          '/api/photo-process',
+          {
+            method: "POST",
+            body: requestBody
+          }
+        ).then(res => {
+          if (!res.ok) throw new Error('Request Error');
+          return res.json();
+        }).then(json => {
+          if (!json.success) throw new Error('Request Error');
+          location.assign(location.origin + '/photo-thankyou');
+        }).catch(e => console.log(`An Error occured: ${e.message}`));
+      })
+    </script>
+</body>
+</html>
